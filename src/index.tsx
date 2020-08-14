@@ -1,4 +1,6 @@
 import { h, render } from 'preact';
+import { App } from './components/App';
+
 import './index.scss';
 
-render(<div>Hello, world</div>, document.getElementById('app') as Element);
+render(<App />, document.getElementById('app') as Element);
