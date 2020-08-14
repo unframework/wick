@@ -31,11 +31,11 @@ export const App: FunctionalComponent = () => {
             <rect fill="#f7e26b" x="10" width="10" height="10" y="10"></rect>
           </pattern>
 
-          {crtFilterNode &&
-            cloneElement(crtFilterNode, { id: 'displacementFilter' })}
-        </defs>
-        <g transform="scale(2, 2)">
-          <g style="filter: url(#displacementFilter)" className="App__screen">
+          <g
+            id="screenContents"
+            style="filter: url(#displacementFilter)"
+            className="App__screen"
+          >
             <rect width="320" height="240" fill="#eb8931" />
             <rect width="320" height="240" fill="url(#checkerboardPattern)" />
 
@@ -48,6 +48,16 @@ export const App: FunctionalComponent = () => {
               PC LOAD LETTER
             </text>
           </g>
+
+          <filter id="blur" x="0" y="0" width="100%" height="100%">
+            <feGaussianBlur stdDeviation="1" />
+          </filter>
+
+          {crtFilterNode &&
+            cloneElement(crtFilterNode, { id: 'displacementFilter' })}
+        </defs>
+        <g transform="scale(2, 2)">
+          <use xlinkHref="#screenContents" />
         </g>
       </svg>
     </div>

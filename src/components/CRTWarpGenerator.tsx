@@ -66,12 +66,37 @@ export const CRTWarpGenerator: FunctionalComponent<{
         <feDisplacementMap
           in2="warpMap"
           in="SourceGraphic"
+          result="raw"
           scale={warpScale}
           xChannelSelector="R"
           yChannelSelector="G"
           // eslint-disable-next-line react/no-unknown-property
           color-interpolation-filters="sRGB"
         />
+
+        <feComponentTransfer in="raw" result="contrastRaw">
+          {h('feFuncR', { type: 'table', tableValues: '0 0.1 0.3 0.8 1' })}
+          {h('feFuncG', { type: 'table', tableValues: '0 0.1 0.3 0.8 1' })}
+          {h('feFuncB', { type: 'table', tableValues: '0 0.1 0.3 0.8 1' })}
+        </feComponentTransfer>
+
+        <feColorMatrix
+          in="contrastRaw"
+          result="highlights"
+          type="matrix"
+          values="0.2 0.2 0.2 0 0
+                  0.2 0.2 0.2 0 0
+                  0.2 0.2 0.2 0 0
+                  0 0 0 1 0"
+        />
+
+        <feGaussianBlur
+          in="highlights"
+          result="highlightsBlur"
+          stdDeviation="1"
+        />
+
+        <feComposite in="raw" in2="highlightsBlur" operator="lighter" />
       </filter>
     );
   }, [warpScale]);
