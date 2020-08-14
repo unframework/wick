@@ -49,10 +49,6 @@ export const App: FunctionalComponent = () => {
             </text>
           </g>
 
-          <filter id="blur" x="0" y="0" width="100%" height="100%">
-            <feGaussianBlur stdDeviation="1" />
-          </filter>
-
           {crtFilterNode &&
             cloneElement(crtFilterNode, { id: 'displacementFilter' })}
         </defs>
