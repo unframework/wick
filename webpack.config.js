@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/', // ensure absolute path is used in resource references
@@ -13,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: [
           {
             loader: 'ts-loader',
@@ -35,7 +35,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
     new CleanWebpackPlugin(),

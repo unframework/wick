@@ -3,14 +3,28 @@
     "browser": true,
     "es6": true
   },
+  "settings": {
+    "react": {
+      "version": "16.8",
+      "pragma": "h"
+    }
+  },
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
+    "prettier/react"
   ],
   "plugins": [
-    "@typescript-eslint"
-  ]
+    "@typescript-eslint",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
+  }
 }
