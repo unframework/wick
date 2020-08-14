@@ -1,0 +1,12 @@
+html,
+body {
+  margin: 0px;
+  height: 100%;
+  padding: 0px;
+}
+
+#app {
+  position: relative;
+  z-index: 0; // reset stacking
+  height: 100%;
+}
