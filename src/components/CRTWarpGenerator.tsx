@@ -74,10 +74,16 @@ export const CRTWarpGenerator: FunctionalComponent<{
           color-interpolation-filters="sRGB"
         />
 
+        <feComponentTransfer in="raw" result="lowRaw">
+          {h('feFuncR', { type: 'table', tableValues: '0 0.5' })}
+          {h('feFuncG', { type: 'table', tableValues: '0 0.5' })}
+          {h('feFuncB', { type: 'table', tableValues: '0 0.5' })}
+        </feComponentTransfer>
+
         <feComponentTransfer in="raw" result="contrastRaw">
-          {h('feFuncR', { type: 'table', tableValues: '0 0.1 0.3 0.8 1' })}
-          {h('feFuncG', { type: 'table', tableValues: '0 0.1 0.3 0.8 1' })}
-          {h('feFuncB', { type: 'table', tableValues: '0 0.1 0.3 0.8 1' })}
+          {h('feFuncR', { type: 'table', tableValues: '0 0 0.1 0.8 1' })}
+          {h('feFuncG', { type: 'table', tableValues: '0 0 0.1 0.8 1' })}
+          {h('feFuncB', { type: 'table', tableValues: '0 0 0.1 0.8 1' })}
         </feComponentTransfer>
 
         <feColorMatrix
@@ -93,10 +99,10 @@ export const CRTWarpGenerator: FunctionalComponent<{
         <feGaussianBlur
           in="highlights"
           result="highlightsBlur"
-          stdDeviation="1"
+          stdDeviation="2"
         />
 
-        <feComposite in="raw" in2="highlightsBlur" operator="lighter" />
+        <feComposite in="lowRaw" in2="highlightsBlur" operator="lighter" />
       </filter>
     );
   }, [warpScale]);
