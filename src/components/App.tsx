@@ -25,17 +25,29 @@ export const App: FunctionalComponent = () => {
             width="20"
             height="20"
             patternUnits="userSpaceOnUse"
+            viewBox="0 0 20 20"
           >
-            <rect fill="#ccc" x="0" width="10" height="10" y="0"></rect>
-            <rect fill="#ccc" x="10" width="10" height="10" y="10"></rect>
+            <rect fill="#f7e26b" x="0" width="10" height="10" y="0"></rect>
+            <rect fill="#f7e26b" x="10" width="10" height="10" y="10"></rect>
           </pattern>
 
           {crtFilterNode &&
             cloneElement(crtFilterNode, { id: 'displacementFilter' })}
         </defs>
+        <g transform="scale(2, 2)">
+          <g style="filter: url(#displacementFilter)" className="App__screen">
+            <rect width="320" height="240" fill="#eb8931" />
+            <rect width="320" height="240" fill="url(#checkerboardPattern)" />
 
-        <g style="filter: url(#displacementFilter)">
-          <rect width="640" height="480" fill="url(#checkerboardPattern)" />
+            <text
+              x="15"
+              y="50"
+              transform="scale(0.5, 1)"
+              transform-origin="15 120"
+            >
+              PC LOAD LETTER
+            </text>
+          </g>
         </g>
       </svg>
     </div>
