@@ -9,7 +9,7 @@ export const App: FunctionalComponent = () => {
 
   return (
     <div className="App">
-      <CRTWarpGenerator warpScale={480} onReady={setCRTFilterNode} />
+      <CRTWarpGenerator warpScale={50} onReady={setCRTFilterNode} />
 
       <svg
         width="640"

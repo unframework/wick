@@ -1,7 +1,7 @@
 import { h, FunctionalComponent, VNode } from 'preact';
 import { useRef, useEffect } from 'preact/hooks';
 
-const MAP_SIZE = 64;
+const MAP_SIZE = 256;
 
 function fillWarpCanvas(warpCanvas: HTMLCanvasElement) {
   const ctx = warpCanvas.getContext('2d');
@@ -22,7 +22,7 @@ function fillWarpCanvas(warpCanvas: HTMLCanvasElement) {
       const scaleShiftU = ctrU * (globalScale - 1);
       const scaleShiftV = ctrV * (globalScale - 1);
 
-      const factor = -(ctrU * ctrU + ctrV * ctrV) * 0.6;
+      const factor = -(ctrU * ctrU + ctrV * ctrV) * 1.5;
       const shiftU = -1 * ctrU * (1 - factor) * factor;
       const shiftV = -1 * ctrV * (1 - factor) * factor;
 
