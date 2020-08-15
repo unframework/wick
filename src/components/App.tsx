@@ -4,6 +4,8 @@ import { CRTWarpGenerator } from './CRTWarpGenerator';
 
 import './App.scss';
 
+import slotIconUrl from './assets/slot-icons.png';
+
 export const App: FunctionalComponent = () => {
   const [crtFilterNode, setCRTFilterNode] = useState<VNode | null>(null);
 
@@ -38,6 +40,14 @@ export const App: FunctionalComponent = () => {
           >
             <rect width="320" height="240" fill="#eb8931" />
             <rect width="320" height="240" fill="url(#checkerboardPattern)" />
+
+            <image
+              xlinkHref={slotIconUrl}
+              width="960"
+              height="80"
+              x="10"
+              y="160"
+            />
 
             <text
               x="15"
