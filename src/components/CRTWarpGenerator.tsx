@@ -80,6 +80,14 @@ export const CRTWarpGenerator: FunctionalComponent<{
           {h('feFuncB', { type: 'table', tableValues: '0 0.5' })}
         </feComponentTransfer>
 
+        {/* eslint-disable-next-line react/no-unknown-property */}
+        <feFlood flood-color="#1b2632" result="bg" />
+
+        <feMerge result="lowRawBg">
+          <feMergeNode in="bg" />
+          <feMergeNode in="lowRaw" />
+        </feMerge>
+
         <feComponentTransfer in="raw" result="contrastRaw">
           {h('feFuncR', { type: 'table', tableValues: '0 0 0.1 0.8 1' })}
           {h('feFuncG', { type: 'table', tableValues: '0 0 0.1 0.8 1' })}
@@ -93,7 +101,7 @@ export const CRTWarpGenerator: FunctionalComponent<{
           values="0.2 0.2 0.2 0 0
                   0.2 0.2 0.2 0 0
                   0.2 0.2 0.2 0 0
-                  0 0 0 1 0"
+                  0 0 0 0 1"
         />
 
         <feGaussianBlur
@@ -102,7 +110,7 @@ export const CRTWarpGenerator: FunctionalComponent<{
           stdDeviation="2"
         />
 
-        <feComposite in="lowRaw" in2="highlightsBlur" operator="lighter" />
+        <feComposite in="lowRawBg" in2="highlightsBlur" operator="lighter" />
       </filter>
     );
   }, [warpScale]);
