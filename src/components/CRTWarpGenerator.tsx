@@ -57,7 +57,7 @@ export const CRTWarpGenerator: FunctionalComponent<{
     const warpDataURI = warpCanvas.toDataURL();
 
     onReadyRef.current(
-      <filter x="0" y="0" width="100%" height="100%">
+      <filter x="0" y="0" width="320" height="240" filterUnits="userSpaceOnUse">
         <feImage
           xlinkHref={warpDataURI}
           preserveAspectRatio="none"
