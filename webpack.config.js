@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   entry: './src/index.tsx',
@@ -39,6 +41,8 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+
+    // new BundleAnalyzerPlugin(),
 
     new HtmlWebpackPlugin({
       inject: true,
