@@ -9,7 +9,7 @@ export class SlotMachine {
 
   update(): void {
     this.wheels.forEach((wheel) => {
-      wheel.position = (wheel.position + FRAME_DELAY) % 1;
+      wheel.position = (wheel.position + FRAME_DELAY * 1.5) % 1;
     });
   }
 }
