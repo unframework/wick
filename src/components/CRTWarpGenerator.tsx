@@ -1,5 +1,5 @@
-import { h, FunctionalComponent, VNode } from 'preact';
-import { useRef, useEffect } from 'preact/hooks';
+import { h, FunctionalComponent } from 'preact';
+import { useEffect, useMemo } from 'preact/hooks';
 
 const MAP_SIZE = 256;
 
@@ -41,23 +41,50 @@ function fillWarpCanvas(warpCanvas: HTMLCanvasElement) {
 }
 
 export const CRTWarpGenerator: FunctionalComponent<{
+  filterId: string;
   warpScale: number;
-  onReady: (svgFilterNode: VNode) => void;
-}> = ({ warpScale, onReady }) => {
-  // wrap in ref to avoid re-triggering hook
-  const onReadyRef = useRef(onReady);
-  onReadyRef.current = onReady;
+}> = ({ filterId, warpScale }) => {
+  const warpCanvas = useMemo(() => {
+    const node = document.createElement('canvas');
+    node.width = MAP_SIZE;
+    node.height = MAP_SIZE;
+    Object.assign(node.style, {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '1px',
+      height: '1px',
+      overflow: 'hidden',
+      objectFit: 'none'
+    });
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+    document.body.appendChild(node);
+
+    return node;
+  }, []);
 
   useEffect(() => {
-    const warpCanvas = canvasRef.current;
+    return () => {
+      document.body.removeChild(warpCanvas);
+    };
+  }, [warpCanvas]);
+
+  // perform actual computation
+  const warpDataURI = useMemo(() => {
     fillWarpCanvas(warpCanvas);
+    return warpCanvas.toDataURL();
+  }, [warpCanvas]);
 
-    const warpDataURI = warpCanvas.toDataURL();
-
-    onReadyRef.current(
-      <filter x="0" y="0" width="320" height="240" filterUnits="userSpaceOnUse">
+  const filterContents = useMemo(
+    () => (
+      <filter
+        id={filterId}
+        x="0"
+        y="0"
+        width="320"
+        height="240"
+        filterUnits="userSpaceOnUse"
+      >
         <feImage
           xlinkHref={warpDataURI}
           preserveAspectRatio="none"
@@ -112,21 +139,9 @@ export const CRTWarpGenerator: FunctionalComponent<{
 
         <feComposite in="lowRawBg" in2="highlightsBlur" operator="lighter" />
       </filter>
-    );
-  }, [warpScale]);
-
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: 1,
-        height: 1,
-        overflow: 'hidden'
-      }}
-    >
-      <canvas width={MAP_SIZE} height={MAP_SIZE} ref={canvasRef} />
-    </div>
+    ),
+    [filterId, warpScale, warpDataURI]
   );
+
+  return filterContents;
 };

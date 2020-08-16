@@ -1,5 +1,4 @@
-import { h, cloneElement, FunctionalComponent, VNode } from 'preact';
-import { useState } from 'preact/hooks';
+import { h, FunctionalComponent } from 'preact';
 import { SlotMachine } from '../SlotMachine';
 import { Timer } from './Timer';
 import { CRTWarpGenerator } from './CRTWarpGenerator';
@@ -12,8 +11,6 @@ const WHEEL_START_X = (320 - WHEEL_WIDTH * 3 - WHEEL_GUTTER * 2) / 2;
 const WHEEL_START_Y = 40;
 
 export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
-  const [crtFilterNode, setCRTFilterNode] = useState<VNode | null>(null);
-
   return (
     <Timer
       update={() => {
@@ -21,8 +18,6 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
       }}
     >
       <div className="App">
-        <CRTWarpGenerator warpScale={50} onReady={setCRTFilterNode} />
-
         <svg
           width="740"
           height="580"
@@ -60,8 +55,7 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
               </g>
             </g>
 
-            {crtFilterNode &&
-              cloneElement(crtFilterNode, { id: 'displacementFilter' })}
+            <CRTWarpGenerator filterId="displacementFilter" warpScale={50} />
           </defs>
           <g>
             <path
