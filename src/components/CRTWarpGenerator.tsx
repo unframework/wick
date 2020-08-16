@@ -81,7 +81,7 @@ export const CRTWarpGenerator: FunctionalComponent<{
         </feComponentTransfer>
 
         {/* eslint-disable-next-line react/no-unknown-property */}
-        <feFlood flood-color="#1b2632" result="bg" />
+        <feFlood flood-color="#000" result="bg" />
 
         <feMerge result="lowRawBg">
           <feMergeNode in="bg" />

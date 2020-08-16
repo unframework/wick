@@ -24,9 +24,9 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
         <CRTWarpGenerator warpScale={50} onReady={setCRTFilterNode} />
 
         <svg
-          width="640"
-          height="480"
-          viewBox="0 0 640 480"
+          width="740"
+          height="580"
+          viewBox="-50 -50 740 580"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
@@ -37,7 +37,7 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
               style="filter: url(#displacementFilter)"
               className="App__screen"
             >
-              <rect width="320" height="240" fill="#493c2b" />
+              <rect width="320" height="240" fill="#e06f8b" />
 
               <g transform={`translate(${WHEEL_START_X},${WHEEL_START_Y})`}>
                 <WheelStrip wheel={state.wheels[0]} />
@@ -63,6 +63,15 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
             {crtFilterNode &&
               cloneElement(crtFilterNode, { id: 'displacementFilter' })}
           </defs>
+          <g>
+            <path
+              d="M-20 480 L5 5 h630 L660 480 Z"
+              fill="#000"
+              stroke="#000"
+              stroke-linejoin="round"
+              stroke-width="40"
+            />
+          </g>
           <g transform="scale(2, 2)">
             <use xlinkHref="#screenContents" />
           </g>
