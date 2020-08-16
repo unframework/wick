@@ -1,7 +1,9 @@
 import { h, Fragment, FunctionalComponent } from 'preact';
 
-import slotIconUrl from './assets/slot-icons.png';
+import { Wheel } from '../SlotMachine';
+import { useFrameRefresh } from './Timer';
 
+import slotIconUrl from './assets/slot-icons.png';
 import './WheelStrip.scss';
 
 const ICON_SIZE = 40;
@@ -51,8 +53,14 @@ function generateStopImage(
   );
 }
 
-const WheelStripContents: FunctionalComponent = () => {
-  const wheelPosition = 0.4; // angle from centerline increasing "downwards", or clockwise if looking from left
+export const WheelStrip: FunctionalComponent<{ wheel: Wheel }> = ({
+  wheel
+}) => {
+  useFrameRefresh();
+
+  // angle from centerline increasing "downwards", or clockwise if looking from left
+  const wheelPosition = wheel.position;
+
   const visibleMidStopPos = WHEEL_STOP_COUNT * wheelPosition;
   const visibleTopEdgePos = visibleMidStopPos - 1.5;
   const visibleTopStopIndex = Math.ceil(visibleTopEdgePos);
@@ -60,20 +68,15 @@ const WheelStripContents: FunctionalComponent = () => {
   const visibleStopOffset = visibleTopStopIndex - visibleTopEdgePos;
 
   return (
-    <Fragment>
-      {generateStopImage(0, visibleTopStopIndex, visibleStopOffset)}
-      {generateStopImage(1, visibleTopStopIndex, visibleStopOffset)}
-      {generateStopImage(2, visibleTopStopIndex, visibleStopOffset)}
-      {generateStopImage(3, visibleTopStopIndex, visibleStopOffset)}
-    </Fragment>
-  );
-};
-
-export const WheelStrip: FunctionalComponent = () => {
-  return (
     <g className="WheelStrip">
       <rect className="_bg" width={WHEEL_WIDTH} height={WHEEL_HEIGHT} />
-      <WheelStripContents />
+
+      <Fragment>
+        {generateStopImage(0, visibleTopStopIndex, visibleStopOffset)}
+        {generateStopImage(1, visibleTopStopIndex, visibleStopOffset)}
+        {generateStopImage(2, visibleTopStopIndex, visibleStopOffset)}
+        {generateStopImage(3, visibleTopStopIndex, visibleStopOffset)}
+      </Fragment>
     </g>
   );
 };

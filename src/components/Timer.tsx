@@ -1,10 +1,15 @@
 import { h, createContext, FunctionalComponent, RefObject } from 'preact';
-import { useRef, useContext, useEffect } from 'preact/hooks';
+import { useRef, useContext, useEffect, useState } from 'preact/hooks';
 
 type TimerCallback = () => void;
 const TimerContext = createContext<RefObject<TimerCallback>[] | null>(null);
 
-export const Timer: FunctionalComponent = ({ children }) => {
+export const FRAME_DELAY = 1 / 60;
+
+export const Timer: FunctionalComponent<{ update: () => void }> = ({
+  update,
+  children
+}) => {
   const cbListRef = useRef<RefObject<TimerCallback>[]>([]);
 
   useEffect(() => {
@@ -14,6 +19,9 @@ export const Timer: FunctionalComponent = ({ children }) => {
 
     function startRAF() {
       rafId = window.requestAnimationFrame(() => {
+        // first, update the state
+        update();
+
         cbList.forEach((cbRef) => {
           if (!cbRef.current) {
             throw new Error('empty frame callback');
@@ -36,7 +44,7 @@ export const Timer: FunctionalComponent = ({ children }) => {
 
       window.cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [update]);
 
   return (
     <TimerContext.Provider value={cbListRef.current}>
@@ -68,4 +76,13 @@ export function useFrame(callback: TimerCallback): void {
       cbList.splice(index, 1);
     };
   }, [cbList]);
+}
+
+export function useFrameRefresh(): void {
+  // simply trigger a re-render
+  const [, setTrigger] = useState<boolean>(false);
+
+  useFrame(() => {
+    setTrigger((prev) => !prev);
+  });
 }
