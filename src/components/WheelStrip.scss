@@ -1,0 +1,11 @@
+.WheelStrip {
+  clip-path: url(#WheelStrip__overallClip);
+
+  > ._bg {
+    fill: #fff;
+  }
+
+  > ._iconRoot {
+    clip-path: url(#WheelStrip__iconClip);
+  }
+}
