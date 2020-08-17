@@ -14,6 +14,7 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
     >
       <div className="App">
         <div className="_main">
+          <div className="_table" />
           <div className="_cabinet">
             <div className="_screen">
               <MachineScreen state={state} />
