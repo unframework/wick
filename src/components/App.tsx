@@ -13,7 +13,13 @@ export const App: FunctionalComponent<{ state: SlotMachine }> = ({ state }) => {
       }}
     >
       <div className="App">
-        <MachineScreen state={state} />
+        <div className="_main">
+          <div className="_cabinet">
+            <div className="_screen">
+              <MachineScreen state={state} />
+            </div>
+          </div>
+        </div>
       </div>
     </Timer>
   );

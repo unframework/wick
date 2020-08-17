@@ -12,9 +12,9 @@ export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
 }) => {
   return (
     <svg
-      width="740"
-      height="580"
-      viewBox="-50 -50 740 580"
+      width="640"
+      height="480"
+      viewBox="0 0 640 480"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
@@ -50,15 +50,6 @@ export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
 
         <CRTWarpGenerator filterId="displacementFilter" warpScale={50} />
       </defs>
-      <g>
-        <path
-          d="M-20 480 L5 5 h630 L660 480 Z"
-          fill="#000"
-          stroke="#000"
-          stroke-linejoin="round"
-          stroke-width="40"
-        />
-      </g>
       <g transform="scale(2, 2)">
         <use xlinkHref="#screenContents" />
       </g>
