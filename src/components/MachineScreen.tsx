@@ -3,9 +3,14 @@ import { SlotMachine } from '../SlotMachine';
 import { CRTWarpGenerator } from './CRTWarpGenerator';
 import { WheelStrip, WHEEL_STRIP_DEFS, WHEEL_WIDTH } from './WheelStrip';
 
+const LOGO_ANCHOR_X = 160;
+const LOGO_ANCHOR_Y = 40;
+
 const WHEEL_GUTTER = 10;
 const WHEEL_START_X = (320 - WHEEL_WIDTH * 3 - WHEEL_GUTTER * 2) / 2;
-const WHEEL_START_Y = 40;
+const WHEEL_START_Y = 70;
+
+import './MachineScreen.scss';
 
 export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
   state
@@ -23,9 +28,17 @@ export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
         <g
           id="screenContents"
           style="filter: url(#displacementFilter)"
-          className="App__screen"
+          className="MachineScreen"
         >
-          <rect width="320" height="240" fill="#e06f8b" />
+          <rect width="320" height="240" fill="#a3ce27" />
+
+          <text className="_logo" x={LOGO_ANCHOR_X} y={LOGO_ANCHOR_Y}>
+            LUCKY EYES
+          </text>
+
+          <text className="_tagline" x={LOGO_ANCHOR_X} y={LOGO_ANCHOR_Y}>
+            Video Ca$$$ino
+          </text>
 
           <g transform={`translate(${WHEEL_START_X},${WHEEL_START_Y})`}>
             <WheelStrip wheel={state.wheels[0]} />

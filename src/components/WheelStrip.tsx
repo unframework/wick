@@ -77,6 +77,8 @@ export const WheelStrip: FunctionalComponent<{ wheel: Wheel }> = ({
         {generateStopImage(2, visibleTopStopIndex, visibleStopOffset)}
         {generateStopImage(3, visibleTopStopIndex, visibleStopOffset)}
       </Fragment>
+
+      <rect className="_border" width={WHEEL_WIDTH} height={WHEEL_HEIGHT} />
     </g>
   );
 };

@@ -5,6 +5,12 @@
     fill: #fff;
   }
 
+  > ._border {
+    fill: none;
+    stroke-width: 4px;
+    stroke: #493c2b;
+  }
+
   > ._iconRoot {
     clip-path: url(#WheelStrip__iconClip);
   }
