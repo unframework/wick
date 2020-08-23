@@ -19,6 +19,8 @@ const PAYLINE_START_X = WHEEL_START_X - 10;
 const PAYLINE_END_X = WHEEL_START_X + WHEEL_WIDTH * 3 + WHEEL_GUTTER * 2 + 10;
 const PAYLINE_Y = WHEEL_START_Y + WHEEL_HEIGHT / 2;
 
+const STATUS_ROW_START_Y = WHEEL_START_Y + WHEEL_HEIGHT + 10;
+
 import './MachineScreen.scss';
 
 export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
