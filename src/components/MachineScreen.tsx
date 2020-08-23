@@ -4,11 +4,11 @@ import { CRTWarpGenerator } from './CRTWarpGenerator';
 import { WheelStrip, WHEEL_STRIP_DEFS, WHEEL_WIDTH } from './WheelStrip';
 
 const LOGO_ANCHOR_X = 160;
-const LOGO_ANCHOR_Y = 40;
+const LOGO_ANCHOR_Y = 45;
 
 const WHEEL_GUTTER = 10;
 const WHEEL_START_X = (320 - WHEEL_WIDTH * 3 - WHEEL_GUTTER * 2) / 2;
-const WHEEL_START_Y = 70;
+const WHEEL_START_Y = 75;
 
 import './MachineScreen.scss';
 
@@ -30,14 +30,22 @@ export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
           style="filter: url(#displacementFilter)"
           className="MachineScreen"
         >
-          <rect width="320" height="240" fill="#a3ce27" />
+          <rect className="_bg" width="320" height="240" />
+
+          {[...new Array(6)].map((_, idx) => (
+            <text
+              key={idx}
+              className="_tagline"
+              data-main={idx === 5}
+              x={LOGO_ANCHOR_X + (idx - 5) * 6}
+              y={LOGO_ANCHOR_Y + (idx - 5) * 10}
+            >
+              Video Casino
+            </text>
+          ))}
 
           <text className="_logo" x={LOGO_ANCHOR_X} y={LOGO_ANCHOR_Y}>
-            LUCKY EYES
-          </text>
-
-          <text className="_tagline" x={LOGO_ANCHOR_X} y={LOGO_ANCHOR_Y}>
-            Video Ca$$$ino
+            LUCKY GUY!
           </text>
 
           <g transform={`translate(${WHEEL_START_X},${WHEEL_START_Y})`}>

@@ -2,13 +2,13 @@
   clip-path: url(#WheelStrip__overallClip);
 
   > ._bg {
-    fill: #fff;
+    fill: lighten(#f7ca3c, 20%);
   }
 
   > ._border {
     fill: none;
     stroke-width: 4px;
-    stroke: #493c2b;
+    stroke: #101020;
   }
 
   > ._iconRoot {
