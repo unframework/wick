@@ -13,7 +13,7 @@ const LOGO_ANCHOR_Y = 45;
 
 const WHEEL_GUTTER = 10;
 const WHEEL_START_X = (320 - WHEEL_WIDTH * 3 - WHEEL_GUTTER * 2) / 2;
-const WHEEL_START_Y = 75;
+const WHEEL_START_Y = 70;
 
 const PAYLINE_START_X = WHEEL_START_X - 10;
 const PAYLINE_END_X = WHEEL_START_X + WHEEL_WIDTH * 3 + WHEEL_GUTTER * 2 + 10;
@@ -46,7 +46,7 @@ export const MachineScreen: FunctionalComponent<{ state: SlotMachine }> = ({
         >
           <rect className="_bgFill" x="0" y="0" width="60" height="60" />
           <text className="_bgText" x="10" y="30">
-            $
+            ☺
           </text>
         </pattern>
 
