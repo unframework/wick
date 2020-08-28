@@ -23,6 +23,18 @@ export const WHEEL_STRIP_DEFS = (
     <clipPath id="WheelStrip__iconClip">
       <rect width={ICON_SIZE} height={ICON_SIZE} />
     </clipPath>
+    <filter
+      id="WheelStrip__iconFilter"
+      x="0"
+      y="0"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      filterUnits="userSpaceOnUse"
+    >
+      <feFlood flood-color="#ff0" result="fill" />
+      {/* using feBlend+multiply loses alpha channel? */}
+      <feComposite in="SourceGraphic" in2="fill" operator="arithmetic" k1={1} />
+    </filter>
   </Fragment>
 );
 
@@ -41,6 +53,7 @@ function generateStopImage(
       transform={`translate(${(WHEEL_WIDTH - ICON_SIZE) / 2},${
         (stopIncrement - shiftOffset) * ICON_SIZE
       })`}
+      filter="url(#WheelStrip__iconFilter)"
     >
       <image
         className="_iconAtlas"
